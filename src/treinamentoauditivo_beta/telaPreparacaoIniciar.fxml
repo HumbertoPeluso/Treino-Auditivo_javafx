@@ -1,16 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="219.0" layoutY="14.0" text="Tela de Preparação para iniciar" />
-      <Button layoutX="507.0" layoutY="19.0" mnemonicParsing="false" text="Opções" />
-      <Label layoutX="434.0" layoutY="44.0" text="Pensar em possíveis opções" />
-      <Button layoutX="529.0" layoutY="361.0" mnemonicParsing="false" text="Sair" />
-      <Button layoutX="274.0" layoutY="188.0" mnemonicParsing="false" text="Iniciar" />
+      <ImageView fitHeight="400.0" fitWidth="606.0" layoutX="-2.0">
+         <image>
+            <Image url="file:Fundos/images%20(1).jpg" />
+         </image>
+      </ImageView>
+      <Group layoutX="127.0" layoutY="224.0">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="140.0">
+               <image>
+                  <Image url="file:Fundos/começar.png" />
+               </image>
+            </ImageView>
+            <Button  id="iniciar" fx:id="iniciar"  onAction="#iniciar" mnemonicParsing="false" opacity="0.06" prefHeight="35.0" prefWidth="140.0" text="Iniciar">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Group>
+      <Group layoutX="535.0" layoutY="-4.0">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="9.0" layoutY="9.0">
+               <image>
+                  <Image url="file:Fundos/fechar%20vermelho.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="sair" onAction="#botaoSair" layoutX="9.0" layoutY="9.0" mnemonicParsing="false" opacity="0.3" prefHeight="50.0" prefWidth="50.0" text="Sair">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+               <effect>
+                  <Shadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Group>
+      <Text fill="#e4ed07" layoutX="186.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Treino Auditivo!">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#e4ed07" layoutX="95.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para começar o seu treinamento, clique em iniciar." wrappingWidth="344.13671875">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#e4ed07" layoutX="235.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para reproduzir  uma nota, basta clicar no botão Play" wrappingWidth="333.13671875">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="editarCadastro" layoutX="487.0" layoutY="83.0" mnemonicParsing="false" onAction="#botaoEditarCadastro" text="Editar Cadastro" />
    </children>
 </Pane>

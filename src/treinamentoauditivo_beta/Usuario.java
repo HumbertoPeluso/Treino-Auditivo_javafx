@@ -14,14 +14,17 @@ public class Usuario {
     private String userName;
 private String email;
 private String senha;
-private int fase;
+private Fase fase = new Fase();
+private int codigo;
 private boolean logado = false;
+private Usuario usuario;
 
-    public Usuario(String userName, String email, String senha, String fase) {
+    public Usuario(String userName, String email, String senha, String codigo) {
         this.userName = userName;
         this.email = email;
         this.senha = senha;
-        this.fase = Integer.parseInt(fase);
+        this.codigo =Integer.parseInt(codigo);
+        fase.setCodigo(this.codigo);
     }
 
     public String getUserName() {
@@ -48,13 +51,17 @@ private boolean logado = false;
         this.senha = senha;
     }
 
-    public int getFase() {
+    public Fase getFase() {
         return fase;
     }
 
-    public void setFase(int fase) {
-        this.fase = fase;
+    
+
+    public Usuario getUsuario() {
+        return usuario;
     }
+    
+  
 
     public boolean isLogado() {
         return logado;
@@ -63,6 +70,9 @@ private boolean logado = false;
     public void setLogado(boolean logado) {
         this.logado = logado;
     }
-    
+    public void salvarFase(){
+        VerificadorDeDados salvar = new VerificadorDeDados();
+        salvar.salvarFase(this);
+    }
     
 }

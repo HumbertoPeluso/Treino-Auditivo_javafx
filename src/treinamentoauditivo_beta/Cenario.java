@@ -9,6 +9,7 @@ package treinamentoauditivo_beta;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,5 +29,17 @@ public class Cenario {
         stageScene2.setScene(scene2);
         stageScene2.show();
     }
+     
+     public void mudar (String caminho, ActionEvent event, Object controller) throws IOException{
+         
+         FXMLLoader loader = new FXMLLoader(getClass().getResource(caminho));
+         loader.setController(controller);
+         Parent raizScene2 = loader.load();
+         Scene scene2 = new Scene (raizScene2);
+         Stage stageScene2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+         stageScene2.setScene(scene2);
+        stageScene2.show();
+         
+     }
     
 }

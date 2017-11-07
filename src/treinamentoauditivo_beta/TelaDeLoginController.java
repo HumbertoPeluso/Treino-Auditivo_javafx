@@ -32,6 +32,7 @@ public class TelaDeLoginController implements Initializable {
     
      * @param url
      */
+    
     @FXML
     private Pane telaDeLogin;
     @FXML
@@ -41,7 +42,7 @@ public class TelaDeLoginController implements Initializable {
     @FXML
     private Label avisoTelaDeLogin;
     @FXML
-    private Button logar, irParacadastrar, recuperarSenha;
+    private Button logar, irParaCadastrar, recuperarSenha;
     
         @FXML
         private void logar(ActionEvent evento) throws ParseException, IOException{
@@ -49,8 +50,10 @@ public class TelaDeLoginController implements Initializable {
         VerificadorDeDados validaLogin = new VerificadorDeDados();
         
         if(validaLogin.verificaLogin(email.getText(), senha.getText())){
+            Usuario usuario = new Usuario(validaLogin.getUserNameValido(), validaLogin.getEmailValido(), validaLogin.getSenhaValida(), validaLogin.getFase());
+            TelaPreparacaoIniciarController telaPreparacaoiniciar = new TelaPreparacaoIniciarController(usuario);
             Cenario cenario = new Cenario();
-            cenario.mudar("telaPreparacaoIniciar.fxml", evento);
+            cenario.mudar("telaPreparacaoIniciar.fxml", evento, telaPreparacaoiniciar);
         }else{
             avisoTelaDeLogin.setText("Erro nos dados de login!");
         }

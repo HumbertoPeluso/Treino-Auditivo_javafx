@@ -1,20 +1,424 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import java.util.ArrayList?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
-      <Label layoutX="246.0" layoutY="6.0" text="Tela de Treinamento" />
-      <Button layoutX="534.0" layoutY="361.0" mnemonicParsing="false" text="Sair" />
-      <Button layoutX="482.0" layoutY="53.0" mnemonicParsing="false" text="Play" />
-      <Label layoutX="36.0" layoutY="70.0" text="Contador de acertos em sequência" />
-      <Button layoutX="194.0" layoutY="230.0" mnemonicParsing="false" text="Dó" />
-      <Button layoutX="195.0" layoutY="255.0" mnemonicParsing="false" text="Ré" />
-      <Button layoutX="195.0" layoutY="280.0" mnemonicParsing="false" text="Mi" />
-      <Label layoutX="246.0" layoutY="234.0" text="Os botões devem ser figuras que representam as notas" />
+      <ImageView fitHeight="408.0" fitWidth="606.0" layoutX="-2.0" layoutY="-2.0">
+         <image>
+            <Image url="file:Fundos/images%20(1).jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="26.0" layoutY="14.0" text="Clique em play para reproduzir" textFill="#e2d416">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label  layoutX="425.0" layoutY="329.0" text="Contador de acertos" textFill="#e2d416">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
       <Label layoutX="114.0" layoutY="97.0" />
+      
+      <Group layoutX="275.0" layoutY="8.0">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0">
+               <image>
+                  <Image url="file:Fundos/play%20top.png" />
+               </image>
+            </ImageView>
+            <Button id="play" fx:id="play" mnemonicParsing="false" onAction="#play" opacity="0.0" prefHeight="52.0" prefWidth="52.0" text="Play">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Group>
+      <Group layoutX="524.0">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="9.0" layoutY="9.0">
+               <image>
+                  <Image url="file:Fundos/fechar%20vermelho.png" />
+               </image>
+            </ImageView>
+            <Button  layoutX="9.0" layoutY="9.0" mnemonicParsing="false" opacity="0.3" prefHeight="50.0" prefWidth="50.0"  >
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+               <effect>
+                  <Shadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Group>
+      <Label fx:id="contadorDeAcertos" layoutX="492.0" layoutY="356.0" prefHeight="17.0" prefWidth="32.0" text="0" textFill="#2fed05" />
+       
+       <Group layoutX="524.0">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="9.0" layoutY="9.0">
+               <image>
+                  <Image url="file:Fundos/fechar%20vermelho.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="sair" onAction="#botaoSair" layoutX="9.0" layoutY="9.0" mnemonicParsing="false" opacity="0.3" prefHeight="50.0" prefWidth="50.0" text="Sair">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+               <effect>
+                  <Shadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Group>
+      <Text fill="#e2d416" layoutX="26.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qual é a nota ?">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Text>
+      <fx:define>
+      <ArrayList fx:id="listaDeToolBar" >
+      <ToolBar fx:id="tool1" layoutX="26.0" layoutY="113.0" prefHeight="45.0" prefWidth="75.0" visible="false" disable="true">
+         <items>
+            <Button fx:id="C" mnemonicParsing="false" onAction="#botaoC" prefHeight="30.0" prefWidth="45.0" text="Dó" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Forte" size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#ff0505" radius="14.4475" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="C" textAlignment="CENTER" wrappingWidth="50.0">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <ImageView fitHeight="30.0" fitWidth="45.0">
+               <image>
+                  <Image url="file:Fundos/Dó.png" />
+               </image>
+            </ImageView>
+         </items>
+      </ToolBar>
+      <ToolBar fx:id="tool2" layoutX="138.0" layoutY="113.0" prefHeight="45.0" prefWidth="75.0" visible="false" disable="true">
+         <items>
+            <Button fx:id="D" mnemonicParsing="false" onAction="#botaoD" prefHeight="30.0" prefWidth="45.0" text="Ré">
+               <font>
+                  <Font name="Forte" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#2d05ff" height="29.9" radius="16.6725" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="D" textAlignment="CENTER" wrappingWidth="50.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="30.0" fitWidth="45.0">
+               <image>
+                  <Image url="file:Fundos/ré.png" />
+               </image>
+            </ImageView>
+         </items>
+      </ToolBar>
+      <ToolBar fx:id="tool3" layoutX="252.0" layoutY="113.0" prefHeight="45.0" prefWidth="75.0" visible="false" disable="true">
+         <items>
+            <Button fx:id="E" mnemonicParsing="false" onAction="#botaoE" prefHeight="30.0" prefWidth="45.0" text="Mi">
+               <font>
+                  <Font name="Forte" size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#ff05d3" height="29.9" radius="16.6725" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="E" textAlignment="CENTER" wrappingWidth="50.0">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <ImageView fitHeight="30.0" fitWidth="45.0">
+               <image>
+                  <Image url="file:Fundos/Mi.png" />
+               </image>
+            </ImageView>
+         </items>
+      </ToolBar>
+      
+      <ToolBar fx:id="tool4" layoutX="26.0" layoutY="182.0" prefHeight="45.0" prefWidth="75.0" visible="false" disable="true">
+         <items>
+            <Button fx:id="F" mnemonicParsing="false" onAction="#botaoF" prefHeight="30.0" prefWidth="45.0" text="Fá" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Forte" size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#ff5605" height="29.9" radius="16.6725" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="F" textAlignment="CENTER" wrappingWidth="50.0">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <ImageView fitHeight="40.0" fitWidth="70.0">
+               <image>
+                  <Image url="file:Fundos/Fa.PNG" />
+               </image>
+            </ImageView>
+         </items>
+      </ToolBar>
+      <ToolBar fx:id="tool5" layoutX="138.0" layoutY="182.0" prefHeight="45.0" prefWidth="75.0" visible="false" disable="true">
+         <items>
+            <Button fx:id="G" mnemonicParsing="false" onAction="#botaoG" prefHeight="30.0" prefWidth="45.0" text="Sol" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Forte" size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#05d6ff" height="29.9" radius="16.6725" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="C" textAlignment="CENTER" wrappingWidth="50.0">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <ImageView fitHeight="40.0" fitWidth="70.0">
+               <image>
+                  <Image url="file:Fundos/Sol.PNG" />
+               </image>
+            </ImageView>
+         </items>
+      </ToolBar>
+     
+      <ToolBar fx:id="tool6" layoutX="252.0" layoutY="182.0" prefHeight="45.0" prefWidth="75.0" visible="false" disable="true">
+         <items>
+            <Button fx:id="A" mnemonicParsing="false" onAction="#botaoA" prefHeight="30.0" prefWidth="45.0" text="Lá">
+               <font>
+                  <Font name="Forte" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#ba05ff" height="34.35" radius="17.785" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A" textAlignment="CENTER" wrappingWidth="50.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="40.0" fitWidth="70.0">
+               <image>
+                  <Image url="file:Fundos/La.PNG" />
+               </image>
+            </ImageView>
+         </items>
+      </ToolBar>
+      <ToolBar fx:id="tool7" layoutX="138.0" layoutY="251.0" prefHeight="45.0" prefWidth="75.0" visible="false" disable="true">
+         <items>
+            <Button fx:id="B" mnemonicParsing="false" onAction="#botaoB" prefHeight="30.0" prefWidth="45.0" text="Si">
+               <font>
+                  <Font name="Forte" size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#ff0571" height="36.57" radius="18.34" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="B" textAlignment="CENTER" wrappingWidth="50.0">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <ImageView fitHeight="40.0" fitWidth="70.0">
+               <image>
+                  <Image url="file:Fundos/Si.PNG" />
+               </image>
+            </ImageView>
+         </items>
+      </ToolBar>
+       <ToolBar fx:id="tool8" layoutX="26.0" layoutY="251.0" prefHeight="50.0" prefWidth="99.0" visible="false" disable="true">
+         <items>
+            <ImageView fitHeight="40.0" fitWidth="70.0">
+               <image>
+                  <Image url="file:Fundos/La_Sustenido.PNG" />
+               </image>
+            </ImageView>
+            <Button fx:id="C_Sust" mnemonicParsing="false" onAction="#botaoC_Sust" prefHeight="30.0" prefWidth="108.0" text="Dó Sustenido">
+               <font>
+                  <Font name="Forte" size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#ff0505" height="34.35" radius="17.785" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </items>
+      </ToolBar>
+      <ToolBar fx:id="tool9" layoutX="251.0" layoutY="251.0" prefHeight="45.0" prefWidth="99.0" visible="false" disable="true">
+         <items>
+            <ImageView fitHeight="40.0" fitWidth="70.0">
+               <image>
+                  <Image url="file:Fundos/Re_Sustenido.PNG" />
+               </image>
+            </ImageView>
+            <Button fx:id="D_Sust" mnemonicParsing="false" onAction="#botaoD_Sust" prefHeight="30.0" prefWidth="108.0" text="Ré Sustenido">
+               <font>
+                  <Font name="Forte" size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#ff05d3" height="34.35" radius="17.785" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </items>
+      </ToolBar>
+      <ToolBar fx:id="tool10" layoutX="26.0" layoutY="314.0" prefHeight="45.0" prefWidth="99.0" visible="false" disable="true">
+         <items>
+            <ImageView fitHeight="40.0" fitWidth="70.0">
+               <image>
+                  <Image url="file:Fundos/Fa_Sustenido.PNG" />
+               </image>
+            </ImageView>
+            <Button fx:id="F_Sust" mnemonicParsing="false" prefHeight="30.0" prefWidth="108.0" text="Fa Sustenido">
+               <font>
+                  <Font name="Forte" size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#ff0505" height="34.35" radius="17.785" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </items>
+      </ToolBar>
+      <ToolBar fx:id="tool11" layoutX="138.0" layoutY="315.0" prefHeight="45.0" prefWidth="99.0" visible="false" disable="true">
+         <items>
+            <ImageView fitHeight="40.0" fitWidth="70.0">
+               <image>
+                  <Image url="file:Fundos/Sol_Sustenido.PNG" />
+               </image>
+            </ImageView>
+            <Button fx:id="G_Sust" mnemonicParsing="false" onAction="#botaoG_Sust" prefHeight="30.0" prefWidth="108.0" text="Sol Sustenido" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Forte" size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#2d05ff" height="29.9" radius="16.6725" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </items>
+      </ToolBar>
+      <ToolBar fx:id="tool12" layoutX="251.0" layoutY="315.0" prefHeight="45.0" prefWidth="99.0" visible="false" disable="true">
+  
+         <items>
+            <ImageView fitHeight="40.0" fitWidth="70.0">
+               <image>
+                  <Image url="file:Fundos/La_Sustenido.PNG" />
+               </image>
+            </ImageView>
+            <Button fx:id="A_Sust" mnemonicParsing="false" onAction="#botaoA_Sust" prefHeight="30.0" prefWidth="108.0" text="Lá Sustenido">
+               <font>
+                  <Font name="Forte" size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow choke="0.36" color="#ff05d3" height="34.35" radius="17.785" width="38.79" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </items>
+      </ToolBar>
+      </ArrayList>
+      </fx:define>
+       <fx:reference source="tool1"/>
+        <fx:reference source="tool2"/>
+        <fx:reference source="tool3"/>
+        <fx:reference source="tool4"/>
+        <fx:reference source="tool5"/>
+        <fx:reference source="tool6"/>
+        <fx:reference source="tool7"/>
+        <fx:reference source="tool8"/>
+        <fx:reference source="tool9"/>
+         <fx:reference source="tool10"/>
+        <fx:reference source="tool11"/>
+        <fx:reference source="tool12"/>
+      <Label layoutX="518.0" layoutY="59.0" text="Salvar e Sair" textFill="#e2d416">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="287.0" layoutY="59.0" text="Play" textFill="#e2d416">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="msgDeAcertoOuErro" layoutX="350.0" layoutY="158.0" textFill="#2fed05" />
+      <Button fx:id="continuar" layoutX="419.0" layoutY="195.0" mnemonicParsing="false" onAction="#botaoContinuar" text="Continuar" visible="false" />
+
    </children>
 </Pane>

@@ -6,6 +6,7 @@
 package treinamentoauditivo_beta;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -23,7 +24,7 @@ public class VerificadorDeDados {
     private String userNameValido;
     private String emailValido;
     private String senhaValida;
-    private String fase="0";
+    private String fase="3";
     //private String conteudo;
     private String caminho = "Salvar//SaveFile.ta";
     private Usuario usuarioLogado;
@@ -130,7 +131,7 @@ public class VerificadorDeDados {
         return this.usuarioLogado;
     }
 
-    public void salvarCadastro(String userName, String email, String senha) throws ParseException{
+    public String salvarCadastro(String userName, String email, String senha, String codigoFase) throws ParseException{
         
         this.Ler(email, senha);
         
@@ -142,7 +143,7 @@ public class VerificadorDeDados {
                 String userNameCriptografado = bte.encrypt(userName);
                 String emailCriptografado = bte.encrypt(email);
                 String senhaCriptografada= bte.encrypt(senha);
-                String faseCriptografada = bte.encrypt(fase);
+                String faseCriptografada = bte.encrypt(codigoFase);
 //                String userNameCriptografado = userName;
 //                String emailCriptografado = email;
 //                String senhaCriptografada= senha;
@@ -155,16 +156,18 @@ public class VerificadorDeDados {
                     
                     escreverArquivo.println(userNameCriptografado + " " + emailCriptografado + " " + senhaCriptografada + " " + faseCriptografada);
                     
-                     
+                     return "Usuario Salvo Com Sucesso";
                     
                 }
             }catch(IOException e){
-                System.out.print("erro");
+//                System.out.print("erro");
+                  return "Erro na gravação dos dados!";
             }
 
         
     }else {
-    System.out.println("Conta já Cadastrada. ");
+//    System.out.println("Conta já Cadastrada. ");
+       return "Conta já Cadastrada!";
 }
     } 
     
@@ -190,5 +193,103 @@ public class VerificadorDeDados {
         return this.getEmailValido() != null;
     }
     
+    public void salvarFase(Usuario usuario){
+        
+        String nomeDeUsuario = usuario.getUserName();
+        String senha = usuario.getSenha();
+        String fase = String.valueOf(usuario.getFase().getCodigo());
+        
+        salvarEdicao(usuario, nomeDeUsuario, senha, fase);
+    }
+    
+    public void salvarEdicao(Usuario usuario, String edUserName, String edSenha, String edFase){
+        String arquivoB = "Salvar//SaveFile_.ta";
+        
+        
+         BasicTextEncryptor bte = new BasicTextEncryptor();
+        bte.setPassword("codigoCriptografia");
+        
+        try {
+            FileReader arq = new FileReader(caminho);
+            BufferedReader lerArq = new BufferedReader(arq);
+            String linha="";
+            
+            try {
+                
+                linha = lerArq.readLine();
+                
+                while(linha!=null){
+                    // Loop onde se captura os dados do arquivo texto e instancia as classes em seus respectivos objetos
+                    
+                   String userNameDoArquivo = bte.decrypt(linha.split(" ")[0]);
+                   String emailDoArquivo = bte.decrypt(linha.split(" ")[1]);
+                   String senhaDoArquivo = bte.decrypt(linha.split(" ")[2]);
+                   String faseDoArquivo = bte.decrypt(linha.split(" ")[3]);
+
+                   if(usuario.getEmail().equals(emailDoArquivo)){
+                       if(edUserName==null)
+                           userNameValido=userNameDoArquivo;
+                       else
+                           userNameValido=edUserName;
+                       if(edSenha==null)
+                           senhaValida=senhaDoArquivo;
+                       else
+                           senhaValida=edSenha;
+                       emailValido=emailDoArquivo;
+                       fase=edFase;
+                       escreverNoArquivo(userNameValido, emailValido, senhaValida, fase, arquivoB);
+                   }else{
+                       escreverNoArquivo(userNameDoArquivo, emailDoArquivo, senhaDoArquivo, faseDoArquivo, arquivoB);
+                   }
+                   
+                    //conteudo += linha+"\r\n";
+                    linha = lerArq.readLine();
+                }
+                              
+                arq.close();
+                File file = new File(caminho);
+                file.delete();
+                File fileB = new File(arquivoB);
+                fileB.renameTo(file);
+            } catch (IOException ex) {
+                System.out.println("Erro: Não foi possível ler o arquivo!");
+               
+            }
+        } catch (FileNotFoundException ex) {
+            
+           
+        }
+        
+    }
+    
+    private void escreverNoArquivo(String userName, String email, String senha, String codigoFase, String caminho){
+        
+        BasicTextEncryptor bte = new BasicTextEncryptor();
+                bte.setPassword("codigoCriptografia");
+                
+                String userNameCriptografado = bte.encrypt(userName);
+                String emailCriptografado = bte.encrypt(email);
+                String senhaCriptografada= bte.encrypt(senha);
+                String faseCriptografada = bte.encrypt(codigoFase);
+//                String userNameCriptografado = userName;
+//                String emailCriptografado = email;
+//                String senhaCriptografada= senha;
+//                String faseCriptografada = fase;
+                
+            try {
+                try (FileWriter arquivo = new FileWriter(caminho, true)) {
+                    PrintWriter escreverArquivo = new PrintWriter(arquivo);
+                    
+                    
+                    escreverArquivo.println(userNameCriptografado + " " + emailCriptografado + " " + senhaCriptografada + " " + faseCriptografada);
+                    
+                     
+                    
+                }
+            }catch(IOException e){
+//                System.out.print("erro");
+                  
+            }
+    }
     
 }
